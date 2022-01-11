@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pixelate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+        body{
+            text-align: center !important;
+        }
+        #id{
+            font-family: 'Secular One', sans-serif;
+            font-size: 20px;
+            padding: 5px 10px;
+            color: white;
+            background: #0000FF;
+            width: 100px;
+            margin-top: 10px;
+            text-align: center;
+            border-radius: 5px;
+            transition: linear 0.2s;
+            text-decoration: none;
+            outline: none;
+            border: none;
+        }
+        #url{
+            font-family: 'Secular One', sans-serif;
+            font-size: 15px;
+            padding: 10px 5px;
+            outline: none;
+            width: 500px;
+        }
+        canvas{
+            align-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        h1{
+            font-family: 'Secular One', sans-serif;
+            font-size: 30px;
+        }
+        h2{
+            font-family: 'Secular One', sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h2>Enter the Image URL:</h2>
+<input type="text" id="url"/>
+<button id="id" onclick="changeURL()">Upload</button>
+<br>
+<h1>Original Image</h1>
+<img src="https://images.unsplash.com/photo-1462400362591-9ca55235346a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1132&q=80" id="img-box" alt="">
+<br>
+<h1>Pixelated Image</h1>
+<img src="https://images.unsplash.com/photo-1462400362591-9ca55235346a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1132&q=80"  id="pixelitimg" alt="">
+<br>
+<canvas id="pixelitcanvas"></canvas>
+<script src="pixelit.js"></script>
+<script>
+    const obj = new pixelit();
+    obj.draw().pixelate();
+    function pixel(){
+        const obj = new pixelit();
+        obj.draw().pixelate();
+    }
+    function changeURL(){
+        if(document.getElementById("id").textContent=="Upload")
+        {
+            document.getElementById("img-box").src = document.getElementById("url").value;
+            document.getElementById("pixelitimg").src = document.getElementById("url").value;
+            document.getElementById("id").textContent = "Pixel It!";
+            document.getElementById("id").style.backgroundColor = "green";
+            pixel();
+        }
+        else
+        {
+            document.getElementById("img-box").src = document.getElementById("url").value;
+            document.getElementById("pixelitimg").src = document.getElementById("url").value;
+            pixel();
+            document.getElementById("id").textContent = "Upload";
+            document.getElementById("id").style.backgroundColor = "blue";
+        }
+    }
+</script>
+</body>
+</html>
